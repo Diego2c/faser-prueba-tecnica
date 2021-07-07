@@ -33,20 +33,20 @@
 		  </tr>
 		</thead>
 		<tbody class="colorSub" >
-			<tr  *ngFor="let tarea of tareas ;  index as i "  >
+			<tr  *ngFor="let tarea of tareas | orderBy:order;  index as i "  >
 				<th scope="col" style=" width: 55px;"> {{tarea.id}}  </th>
 				<th > {{tarea.titulo}} </th>
 				<th >{{tarea.minutos}} </th>
 				<td>
-					<button mat-icon-button class=""  *ngIf="tarea.favorito" (click)="favorito('delete',i)" >
+					<button mat-icon-button class=""  *ngIf="tarea.favorito" (click)="favorito('delete',tarea.id)" >
 						<mat-icon>favorite</mat-icon>
 					</button>
-					<button mat-icon-button class="" *ngIf="!tarea.favorito" (click)="favorito('add',i)">
+					<button mat-icon-button class="" *ngIf="!tarea.favorito" (click)="favorito('add',tarea.id)">
 						<mat-icon>favorite_border</mat-icon>
 					</button>
 				</td>
 				<td>
-					<button mat-icon-button class="" (click)="eliminarTarea(i)" >
+					<button mat-icon-button class="" (click)="eliminarTarea(tarea)" >
 						<mat-icon>delete</mat-icon>
 					</button>
 				</td>

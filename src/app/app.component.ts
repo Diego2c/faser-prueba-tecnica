@@ -11,6 +11,7 @@ export class AppComponent {
 	tareas: Tarea[];
 	tarea : Tarea = { }
 	order = 'minutos'
+
 	constructor(
         public service: AppService,
 	) { }
@@ -24,23 +25,32 @@ export class AppComponent {
 	}
 
 	favorito(type : string, id : number){
-		console.log(type, id);
 		if(type == 'add'){
-			this.tareas[id].favorito = true
+			for (const value of this.tareas) {
+				if(value.id == id){
+					value.favorito = true
+				}
+			}
 		} else{
-			this.tareas[id].favorito = false
+			for (const value of this.tareas) {
+				if(value.id == id){
+					value.favorito = false
+				}
+			}
 		}
 	}
 
-	eliminarTarea(id : number) {
-		this.tareas.splice(id,1);		
+	eliminarTarea(value) {
+		this.tareas.forEach(function(item, index, object) {
+			if (item === value) {
+				object.splice(index, 1);
+			}
+		});
 	}
 
 	agregarTarea(){		
-		this.tareas.push(this.tarea)
-		this.tarea.id = 0;
-		this.tarea.titulo= '';
-		this.tarea.minutos = 0;
+		this.tareas.push(new Tarea(this.tarea.id, this.tarea.titulo, this.tarea.minutos,false));
+		this.tarea = { }
 	}
 
 	orderby(type){
@@ -49,7 +59,6 @@ export class AppComponent {
 		}else{
 			this.order = 'minutos';
 		}
-		
 	}
 
 	
