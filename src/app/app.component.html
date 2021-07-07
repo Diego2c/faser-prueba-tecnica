@@ -2,18 +2,38 @@
 	<h1>Prueba técnica - Estudio Faser</h1>
 	<h2>Listado de tareas</h2>
 
-	<table  style="font-size: 17px; cursor: pointer;">
+	<div class="form-group row container">
+
+		<div class="col-sm-4">
+			<input type="number" class="form-control textMargin"  [(ngModel)]="tarea.id" placeholder="id">
+		</div>
+		<div class="col-sm-4">
+			<input type="text" class="form-control textMargin"  [(ngModel)]="tarea.titulo" placeholder="titulo">
+		</div>
+		<div class="col-sm-4">
+			<input type="number" class="form-control textMargin"  [(ngModel)]="tarea.minutos" placeholder="minutos">
+		</div>
+		<div style="text-align: center;">
+			<p></p>
+			<button mat-button class="btnadd" (click)="agregarTarea()">Agregar</button>
+		</div>
+	</div>
+
+
+	
+	<table   class="table table-striped" style="font-size: 17px; cursor: pointer;">
 		<thead>
 		  <tr>
 			<th scope="col" style=" width: 55px;" >#</th>
 			<th scope="col" >Titulo</th>
-			<th scope="col" >Minutos</th>
-			<th> </th>
-            <th> </th>
+			<th scope="col" (click)="orderby('arrow_upward')" *ngIf="order == '-minutos' ">Minutos <mat-icon>arrow_downward</mat-icon></th>
+			<th scope="col" (click)="orderby('arrow_downward')" *ngIf="order == 'minutos' ">Minutos <mat-icon>arrow_upward</mat-icon></th>
+			<th> favorito</th>
+            <th> elimnar </th>
 		  </tr>
 		</thead>
 		<tbody class="colorSub" >
-			<tr  *ngFor="let tarea of tareas; index as i"  >
+			<tr  *ngFor="let tarea of tareas ;  index as i "  >
 				<th scope="col" style=" width: 55px;"> {{tarea.id}}  </th>
 				<th > {{tarea.titulo}} </th>
 				<th >{{tarea.minutos}} </th>

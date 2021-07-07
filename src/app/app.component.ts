@@ -9,7 +9,8 @@ import { Tarea } from './tarea';
 })
 export class AppComponent {
 	tareas: Tarea[];
-
+	tarea : Tarea = { }
+	order = 'minutos'
 	constructor(
         public service: AppService,
 	) { }
@@ -35,7 +36,19 @@ export class AppComponent {
 		this.tareas.splice(id,1);		
 	}
 
-	agregarTarea(){
+	agregarTarea(){		
+		this.tareas.push(this.tarea)
+		this.tarea.id = 0;
+		this.tarea.titulo= '';
+		this.tarea.minutos = 0;
+	}
+
+	orderby(type){
+		if(type == 'arrow_downward'){
+			this.order = "-minutos";
+		}else{
+			this.order = 'minutos';
+		}
 		
 	}
 
