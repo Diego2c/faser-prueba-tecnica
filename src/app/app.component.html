@@ -2,29 +2,31 @@
 	<h1>Prueba técnica - Estudio Faser</h1>
 	<h2>Listado de tareas</h2>
 
-
 	<table  style="font-size: 17px; cursor: pointer;">
 		<thead>
 		  <tr>
 			<th scope="col" style=" width: 55px;" >#</th>
-			<th scope="col" style=" width: 100px;" class="text-center" >Titulo</th>
-			<th scope="col">Minutos</th>
-			<td> </td>
-            <td> </td>
+			<th scope="col" >Titulo</th>
+			<th scope="col" >Minutos</th>
+			<th> </th>
+            <th> </th>
 		  </tr>
 		</thead>
 		<tbody class="colorSub" >
-			<tr  *ngFor="let tarea of tareas"  >
-				<td  style="cursor: not-allowed;"> {{tarea.id}}  </td>
-				<th   class="text-center" > {{tarea.titulo}} </th>
-				<td  >{{tarea.minuto}}</td>
+			<tr  *ngFor="let tarea of tareas; index as i"  >
+				<th scope="col" style=" width: 55px;"> {{tarea.id}}  </th>
+				<th > {{tarea.titulo}} </th>
+				<th >{{tarea.minutos}} </th>
 				<td>
-					<button mat-icon-button class="btnIco2"  >
-						<mat-icon>edit</mat-icon>
+					<button mat-icon-button class=""  *ngIf="tarea.favorito" (click)="favorito('delete',i)" >
+						<mat-icon>favorite</mat-icon>
+					</button>
+					<button mat-icon-button class="" *ngIf="!tarea.favorito" (click)="favorito('add',i)">
+						<mat-icon>favorite_border</mat-icon>
 					</button>
 				</td>
 				<td>
-					<button mat-icon-button class="btnIco2"  >
+					<button mat-icon-button class="" (click)="eliminarTarea(i)" >
 						<mat-icon>delete</mat-icon>
 					</button>
 				</td>

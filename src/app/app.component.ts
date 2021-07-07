@@ -21,4 +21,23 @@ export class AppComponent {
 	async obtenerTareas() {
 		this.tareas = await this.service.obtenerTareas();
 	}
+
+	favorito(type : string, id : number){
+		console.log(type, id);
+		if(type == 'add'){
+			this.tareas[id].favorito = true
+		} else{
+			this.tareas[id].favorito = false
+		}
+	}
+
+	eliminarTarea(id : number) {
+		this.tareas.splice(id,1);		
+	}
+
+	agregarTarea(){
+		
+	}
+
+	
 }
